@@ -2,8 +2,9 @@
 
 int	ft_printf(const char *str, ...)
 {
-	int		printed_count;
-	int		i;
+	int			printed_count;
+	int			i;
+	t_format	fmt;
 	va_list	args;
 
 	printed_count = 0;
@@ -13,6 +14,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%')
 		{
+			ft_parse_format(str + i);
 			i++;
 		}
 		else
@@ -26,7 +28,7 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main()
 {
-	int result = ft_printf("Hello%d\n");
+	int result = ft_printf("Hello\n");
 	// int result = printf("hello%d\n",);
 	printf("result: %d\n", result);
 	return (0);

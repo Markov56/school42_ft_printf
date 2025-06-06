@@ -8,11 +8,11 @@ typedef struct	s_flags
 {
 	int	width;
 	int	precision;
-	int	flag_minus;
-	int  flag_zero;
-    int  flag_plus;
-    int  flag_space;
-    int  flag_hash;
+	int	minus;
+	int	zero;
+    int	plus;
+    int	space;
+    int	hash;
     char type;
 }	t_format;
 #endif
