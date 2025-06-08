@@ -16,11 +16,11 @@
 int	ft_printf_output(t_format fmt, va_list *args)
 {
 	if (fmt.type == 'c')
-	{
-		printf("c\n");
-		printf("c\n");
-	}
-	return (0);
+		return (ft_putchar_format(fmt, args));
+	else if (fmt.type == 's')
+		return (ft_putstr_format(fmt, args));
+	else
+		return (0);
 }
 
 int	ft_printf(const char *str, ...)
@@ -38,11 +38,21 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			fmt = ft_parse_format(str, &i);
+			// printf("minus: %d\n", fmt.minus);
+			// printf("zero: %d\n", fmt.zero);
+			// printf("plus: %d\n", fmt.plus);
+			// printf("space: %d\n", fmt.space);
+			// printf("hash: %d\n", fmt.hash);
+			// printf("width: %d\n", fmt.width);
+			// printf("precision: %d\n", fmt.precision);
+			// printf("type: %c\n", fmt.type);
 			printed_count += ft_printf_output(fmt, &args);
 		}
 		else
+		{
 			printed_count += write(1, &str[i], 1);
-		i++;
+			i++;
+		}
 	}
 	va_end(args);
 	return (printed_count);
@@ -51,9 +61,13 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-	// char *test1 = "-0+ #123.45d";
-	int i = 0;
-	ft_printf("hello %-0+ #123.45c world\n");
+	// int my_return = ft_printf("%10c\n", 'M');
+	// int c_return = printf("%10c\n", 'M');
+	int my_return = ft_printf("%.3s\n", "abcd");
+	int c_return = printf("%.3s\n", "abcd");
+	printf("my_return: %d, c_return: %d\n", my_return, c_return);
+	// printf("c_return: %d\n", c_return);
+	// printf("my_return: %d\n", my_return);
 
 	// printf("minus: %d\n", fmt.minus);
 	// printf("zero: %d\n", fmt.zero);
