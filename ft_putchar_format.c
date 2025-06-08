@@ -12,13 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_putchar_format(t_format fmt, va_list *args)
+int	ft_putchar_format(t_format fmt, char c)
 {
-	int		padding;
-	int		printed_count;
-	char	c;
+	int	padding;
+	int	printed_count;
 
-	c = (char)va_arg(*args, int);
 	if (fmt.width)
 		padding = fmt.width - 1;
 	else

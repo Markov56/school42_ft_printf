@@ -42,13 +42,11 @@ static int	ft_count_printed(int width, int str_len, int precision)
 	return (printed_count);
 }
 
-int	ft_putstr_format(t_format fmt, va_list *args)
+int	ft_putstr_format(t_format fmt, char	*str)
 {
 	size_t	str_len;
-	char	*str;
 	int		padding;
 
-	str = (char *)va_arg(*args, char *);
 	if (!str)
 	{
 		if (fmt.precision >= 0 && fmt.precision < 6)

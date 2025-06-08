@@ -38,7 +38,7 @@ void		ft_set_flags(t_format *fmt, char c);
 void		ft_parse_precision(t_format *fmt, const char *fmt_str, int *i);
 void		ft_parse_width(t_format *fmt, const char *fmt_str, int *i);
 t_format	ft_parse_format(const char *fmt_str, int *i);
-int			ft_putchar_format(t_format fmt, va_list *args);
-int			ft_putstr_format(t_format, va_list *args);
+int			ft_putchar_format(t_format fmt, char c);
+int			ft_putstr_format(t_format fmt, char	*str);
 
 #endif

@@ -16,9 +16,9 @@
 int	ft_printf_output(t_format fmt, va_list *args)
 {
 	if (fmt.type == 'c')
-		return (ft_putchar_format(fmt, args));
+		return (ft_putchar_format(fmt, (char)va_arg(*args, int)));
 	else if (fmt.type == 's')
-		return (ft_putstr_format(fmt, args));
+		return (ft_putstr_format(fmt, (char *)va_arg(*args, char *)));
 	else
 		return (0);
 }
@@ -63,8 +63,8 @@ int	main(void)
 {
 	// int my_return = ft_printf("%10c\n", 'M');
 	// int c_return = printf("%10c\n", 'M');
-	int my_return = ft_printf("%.3s\n", "abcd");
-	int c_return = printf("%.3s\n", "abcd");
+	int my_return = ft_printf("%10s\n", "abcd");
+	int c_return = printf("%10s\n", "abcd");
 	printf("my_return: %d, c_return: %d\n", my_return, c_return);
 	// printf("c_return: %d\n", c_return);
 	// printf("my_return: %d\n", my_return);
