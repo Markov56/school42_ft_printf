@@ -18,7 +18,7 @@ int	ft_is_end(char c)
 {
 	if (c == 's' || c == 'p' || c == 'd' 
 		|| c == 'i' || c == 'u' || c == 'x' 
-		|| c == 'X' || c == '%')
+		|| c == 'X' || c == '%' || c == 'c')
 		return (1);
 	return (0);
 }

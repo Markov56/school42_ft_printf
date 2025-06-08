@@ -37,7 +37,6 @@ void	ft_parse_precision(t_format *fmt, const char *fmt_str, int *i)
 		fmt->precision = fmt->precision * 10 + (fmt_str[*i] - '0');
 		(*i)++;
 	}
-	(*i)--;
 }
 
 void	ft_parse_width(t_format *fmt, const char *fmt_str, int *i)
@@ -47,7 +46,6 @@ void	ft_parse_width(t_format *fmt, const char *fmt_str, int *i)
 		fmt->width = fmt->width * 10 + (fmt_str[*i] - '0');
 		(*i)++;
 	}
-	(*i)--;
 }
 
 t_format	ft_parse_format(const char *fmt_str, int *i)
@@ -60,14 +58,21 @@ t_format	ft_parse_format(const char *fmt_str, int *i)
 	{
 		if (ft_is_flag(fmt_str[*i]))
 			ft_set_flags(&fmt, fmt_str[*i]);
-		else if (fmt_str[*i] == '.')
-			ft_parse_precision(&fmt, fmt_str, i);
 		else if (fmt_str[*i] >= '0' && fmt_str[*i] <= '9')
+		{
 			ft_parse_width(&fmt, fmt_str, i);
+			continue ;
+		}
+		else if (fmt_str[*i] == '.')
+		{
+			ft_parse_precision(&fmt, fmt_str, i);
+			continue ;
+		}
 		(*i)++;
 	}
-	if (fmt_str[*i])
+	if (fmt_str[*i] && ft_is_end(fmt_str[*i]))
 		fmt.type = fmt_str[*i];
+	(*i)++;
 	return (fmt);
 }
 /*
