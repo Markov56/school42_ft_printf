@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 #include <stdio.h>
 
 int	ft_printf_output(t_format fmt, va_list *args)
@@ -57,7 +57,7 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (printed_count);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
@@ -80,3 +80,4 @@ int	main(void)
 
 	return 0;
 }
+*/
