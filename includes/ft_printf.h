@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+# include "libft.h"
 
 typedef struct s_flags
 {

@@ -54,7 +54,7 @@ int	ft_putstr_format(t_format fmt, char	*str)
 		else
 			str = "(null)";
 	}
-	str_len = strlen(str);
+	str_len = ft_strlen(str);
 	if (fmt.precision >= 0 && fmt.precision < (int)str_len)
 		str_len = fmt.precision;
 	if (fmt.width > (int)str_len)
