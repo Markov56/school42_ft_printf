@@ -6,7 +6,7 @@
 /*   By: rmarkov <rmarkov@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:43:19 by rmarkov           #+#    #+#             */
-/*   Updated: 2025/06/06 14:43:22 by rmarkov          ###   ########.fr       */
+/*   Updated: 2025/06/17 17:01:21 by rmarkov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void		ft_parse_width(t_format *fmt, const char *fmt_str, int *i);
 t_format	ft_parse_format(const char *fmt_str, int *i);
 int			ft_putchar_format(t_format fmt, char c);
 int			ft_putstr_format(t_format fmt, char	*str);
+int			ft_print_num(t_format fmt, int num);
 
 #endif

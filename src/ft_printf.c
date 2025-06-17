@@ -6,7 +6,7 @@
 /*   By: rmarkov <rmarkov@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 14:43:33 by rmarkov           #+#    #+#             */
-/*   Updated: 2025/06/06 14:43:35 by rmarkov          ###   ########.fr       */
+/*   Updated: 2025/06/17 17:42:48 by rmarkov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_printf_output(t_format fmt, va_list *args)
 		return (ft_putchar_format(fmt, (char)va_arg(*args, int)));
 	else if (fmt.type == 's')
 		return (ft_putstr_format(fmt, (char *)va_arg(*args, char *)));
+	else if (fmt.type == 'd' || fmt.type == 'i')
+		return (ft_print_num(fmt, (int)va_arg(*args, int)));
 	else
 		return (0);
 }
@@ -63,8 +65,10 @@ int	main(void)
 {
 	// int my_return = ft_printf("%10c\n", 'M');
 	// int c_return = printf("%10c\n", 'M');
-	int my_return = ft_printf("%10s\n", "abcd");
-	int c_return = printf("%10s\n", "abcd");
+	// int my_return = ft_printf("%10s\n", "abcd");
+	// int c_return = printf("%10s\n", "abcd");
+	int my_return = ft_printf("%-+0 10.6d\n", -3425234);
+	int c_return = printf("%-+0 10.6d\n", -3425234);
 	printf("my_return: %d, c_return: %d\n", my_return, c_return);
 	// printf("c_return: %d\n", c_return);
 	// printf("my_return: %d\n", my_return);
