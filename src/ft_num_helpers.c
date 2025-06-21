@@ -15,25 +15,6 @@ int	ft_numlen(unsigned int num, unsigned int base)
 	return (count);
 }
 
-void	ft_count_zero_padding(int precision, int num_len, int *zero_padding)
-{
-	*zero_padding = 0;
-	if (precision >= 0)
-		*zero_padding = precision - num_len;
-	if (*zero_padding < 0)
-		*zero_padding = 0;
-}
-
-void	ft_count_space_padding(int width,
-int zero_and_num_len, char sign, int *space_padding)
-{
-	*space_padding = width - zero_and_num_len;
-	if (sign != 0)
-		*space_padding -= 1;
-	if (*space_padding < 0)
-		*space_padding = 0;
-}
-
 void	ft_count_num_padding(t_format fmt, int num_len, int prefix_len,
 	int *zero_padding, int *space_padding)
 {
@@ -70,6 +51,11 @@ void	ft_output_formatted(t_format fmt, const char *str, char sign, int zero_padd
 			prefix = "0X";
 		else
 			prefix = "0x";
+		prefix_len = 2;
+	}
+	if (fmt.type == 'p')
+	{
+		prefix = "0x";
 		prefix_len = 2;
 	}
 	if (fmt.zero && !fmt.minus && fmt.precision < 0)
