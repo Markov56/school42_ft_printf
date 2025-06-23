@@ -49,7 +49,10 @@ int	ft_putstr_format(t_format fmt, char	*str)
 
 	if (!str)
 	{
-		str = "(null)";
+		if (fmt.precision >= 0 && fmt.precision < 6)
+			str = "";
+		else
+			str = "(null)";
 	}
 	str_len = ft_strlen(str);
 	if (fmt.precision >= 0 && fmt.precision < (int)str_len)
