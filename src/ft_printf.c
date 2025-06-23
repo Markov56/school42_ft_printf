@@ -58,7 +58,7 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (printed_count);
 }
-
+/*
 #include <limits.h>
 int	main(void)
 {
@@ -292,3 +292,4 @@ int	main(void)
 	
 	return (0);
 }
+*/
