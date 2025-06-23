@@ -35,7 +35,6 @@ typedef struct s_padding
 {
 	int		zero;
 	int		space;
-	char	sign;
 }	t_padding;
 
 int			ft_printf(const char *str, ...);
@@ -48,8 +47,10 @@ int			ft_putstr_format(t_format fmt, char	*str);
 int			ft_print_num(t_format fmt, int num);
 int			ft_print_hex(t_format fmt, unsigned int num);
 int			ft_numlen(unsigned int num, unsigned int base);
-void		ft_output_formatted(t_format fmt, const char *str, char sign, int zero_padding, int space_padding);
-void		ft_count_num_padding(t_format fmt, int num_len, int prefix_len, int *zero_padding, int *space_padding);
+void		ft_output_formatted(t_format fmt, const char *str, \
+			char sign, t_padding padding);
+void		ft_count_num_padding(t_format fmt, int num_len, \
+			int prefix_len, t_padding *padding);
 int			ft_print_unsigned(t_format fmt, unsigned int num);
 int			ft_print_pointer(t_format fmt, unsigned long ptr);
 char		*ft_utoa(unsigned int n);

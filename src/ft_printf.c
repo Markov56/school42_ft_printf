@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <stdio.h>
 
 static int	ft_printf_output(t_format fmt, va_list *args)
 {
@@ -26,10 +25,9 @@ static int	ft_printf_output(t_format fmt, va_list *args)
 	else if (fmt.type == 'u')
 		return (ft_print_unsigned(fmt, va_arg(*args, unsigned int)));
 	else if (fmt.type == 'p')
-		return (ft_print_pointer(fmt, va_arg(*args, void * )));
-	//TODO check flags
+		return (ft_print_pointer(fmt, (unsigned long)va_arg(*args, void *)));
 	else if (fmt.type == '%')
-		return (ft_putstr_format(fmt, "%"));
+		return (write(1, "%", 1));
 	else
 		return (0);
 }
@@ -61,8 +59,6 @@ int	ft_printf(const char *str, ...)
 	return (printed_count);
 }
 
-/*
-#include <stdio.h>
 #include <limits.h>
 int	main(void)
 {
@@ -84,10 +80,6 @@ int	main(void)
 	my_return = ft_printf("%c\n", '\0');
 	c_return = printf("%c\n", '\0');
 	printf("4: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%05c\n", 'A');
-	c_return = printf("%05c\n", 'A');
-	printf("5: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
 	//-----
 	
@@ -115,18 +107,6 @@ int	main(void)
 	my_return = ft_printf("%10.3s\n", "hello");
 	c_return = printf("%10.3s\n", "hello");
 	printf("6: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%010s\n", "hello");
-	c_return = printf("%010s\n", "hello");
-	printf("7: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%s\n", (char *)NULL);
-	c_return = printf("%s\n", (char *)NULL);
-	printf("8: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%.3s\n", (char *)NULL);
-	c_return = printf("%.3s\n", (char *)NULL);
-	printf("9: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
 	//------
 
@@ -163,8 +143,8 @@ int	main(void)
 	c_return = printf("%10.5d\n", 42);
 	printf("8: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%010.5d\n", 42);
-	c_return = printf("%010.5d\n", 42);
+	my_return = ft_printf("%10.5d\n", 42);
+	c_return = printf("%10.5d\n", 42);
 	printf("9: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%+d\n", 42);
@@ -175,8 +155,8 @@ int	main(void)
 	c_return = printf("% d\n", 42);
 	printf("11: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%+ d\n", 42);
-	c_return = printf("%+ d\n", 42);
+	my_return = ft_printf("%+d\n", 42);
+	c_return = printf("%+d\n", 42);
 	printf("12: my_return: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%.0d\n", 0);
@@ -195,79 +175,79 @@ int	main(void)
 
 	//TYPE X/x
 	my_return = ft_printf("%#10.5x\n", 255);
-    c_return = printf("%#10.5x\n", 255);
-    printf("my_return 1: %d, c_return: %d\n", my_return, c_return);
+	c_return = printf("%#10.5x\n", 255);
+	printf("my_return 1: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#10.5X\n", 255);
-    c_return = printf("%#10.5X\n", 255);
-    printf("my_return 2: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#10.5X\n", 255);
+	c_return = printf("%#10.5X\n", 255);
+	printf("my_return 2: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#8x\n", 4095);
-    c_return = printf("%#8x\n", 4095);
-    printf("my_return 3: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#8x\n", 4095);
+	c_return = printf("%#8x\n", 4095);
+	printf("my_return 3: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#08x\n", 4095);
-    c_return = printf("%#08x\n", 4095);
-    printf("my_return 4: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#08x\n", 4095);
+	c_return = printf("%#08x\n", 4095);
+	printf("my_return 4: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#x\n", 0);
-    c_return = printf("%#x\n", 0);
-    printf("my_return 5: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#x\n", 0);
+	c_return = printf("%#x\n", 0);
+	printf("my_return 5: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#5.0x\n", 0);
-    c_return = printf("%#5.0x\n", 0);
-    printf("my_return 6: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#5.0x\n", 0);
+	c_return = printf("%#5.0x\n", 0);
+	printf("my_return 6: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#-10.5x\n", 1234);
-    c_return = printf("%#-10.5x\n", 1234);
-    printf("my_return 7: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#-10.5x\n", 1234);
+	c_return = printf("%#-10.5x\n", 1234);
+	printf("my_return 7: %d, c_return: %d\n\n", my_return, c_return);
 
-    my_return = ft_printf("%#10x\n", 1234);
-    c_return = printf("%#10x\n", 1234);
-    printf("my_return 8: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%#10x\n", 1234);
+	c_return = printf("%#10x\n", 1234);
+	printf("my_return 8: %d, c_return: %d\n\n", my_return, c_return);
 
 	//--------
 
 	// TYPE u
 	my_return = ft_printf("%u\n", 12345);
 	c_return = printf("%u\n", 12345);
-	printf("my_return 1: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 1: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%10u\n", 12345);
 	c_return = printf("%10u\n", 12345);
-	printf("my_return 2: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 2: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%.8u\n", 12345);
 	c_return = printf("%.8u\n", 12345);
-	printf("my_return 3: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 3: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%10.8u\n", 12345);
 	c_return = printf("%10.8u\n", 12345);
-	printf("my_return 4: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 4: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%010u\n", 12345);
 	c_return = printf("%010u\n", 12345);
-	printf("my_return 5: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 5: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%-10u\n", 12345);
 	c_return = printf("%-10u\n", 12345);
-	printf("my_return 6: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 6: %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%-010u\n", 12345);
-	c_return = printf("%-010u\n", 12345);
-	printf("my_return 7: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%010u\n", 12345);
+	c_return = printf("%010u\n", 12345);
+	printf("my_return 7: %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%010.5u\n", 12345);
-	c_return = printf("%010.5u\n", 12345);
-	printf("my_return 8: %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%010u\n", 12345);
+	c_return = printf("%010u\n", 12345);
+	printf("my_return 8: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%.0u\n", 0);
 	c_return = printf("%.0u\n", 0);
-	printf("my_return 9: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 9: %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%5.0u\n", 0);
 	c_return = printf("%5.0u\n", 0);
-	printf("my_return 10: %d, c_return: %d\n", my_return, c_return);
+	printf("my_return 10: %d, c_return: %d\n\n", my_return, c_return);
 
 	//-------
 
@@ -277,27 +257,31 @@ int	main(void)
 
 	my_return = ft_printf("%p\n", ptr);
 	c_return = printf("%p\n", ptr);
-	printf("1: my_return : %d, c_return: %d\n", my_return, c_return);
+	printf("1: my_return : %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%20p\n", ptr);
 	c_return = printf("%20p\n", ptr);
-	printf("2: my_return : %d, c_return: %d\n", my_return, c_return);
+	printf("2: my_return : %d, c_return: %d\n\n", my_return, c_return);
 
 	my_return = ft_printf("%-20p\n", ptr);
 	c_return = printf("%-20p\n", ptr);
-	printf("3: my_return : %d, c_return: %d\n", my_return, c_return);
+	printf("3: my_return : %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%.0p\n", null_ptr);
-	c_return = printf("%.0p\n", null_ptr);
-	printf("4: my_return : %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%p\n", null_ptr);
+	c_return = printf("%p\n", null_ptr);
+	printf("4: my_return : %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%10.0p\n", null_ptr);
-	c_return = printf("%10.0p\n", null_ptr);
-	printf("5: my_return : %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%10p\n", null_ptr);
+	c_return = printf("%10p\n", null_ptr);
+	printf("5: my_return : %d, c_return: %d\n\n", my_return, c_return);
 
-	my_return = ft_printf("%#p\n", ptr);
-	c_return = printf("%#p\n", ptr);
-	printf("6: my_return : %d, c_return: %d\n", my_return, c_return);
+	my_return = ft_printf("%p\n", ptr);
+	c_return = printf("%p\n", ptr);
+	printf("6: my_return : %d, c_return: %d\n\n", my_return, c_return);
+	
+	my_return = ft_printf(" %p %p \n", null_ptr, null_ptr);
+	c_return = printf(" %p %p \n", null_ptr, null_ptr);
+	printf("7: my_return : %d, c_return: %d\n\n", my_return, c_return);
 	
 	//-----
 
@@ -305,27 +289,6 @@ int	main(void)
 	my_return = ft_printf("%%\n");
 	c_return = printf("%%\n");
 	printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%5%\n");
-	c_return = printf("%5%\n");
-	printf("2: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%-5%\n");
-	c_return = printf("%-5%\n");
-	printf("3: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%05%\n");
-	c_return = printf("%05%\n");
-	printf("4: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%0%\n");
-	c_return = printf("%0%\n");
-	printf("5: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%-0%\n");
-	c_return = printf("%-0%\n");
-	printf("6: my_return: %d, c_return: %d\n\n", my_return, c_return);
 	
 	return (0);
 }
-*/

@@ -16,7 +16,8 @@ LIBFT	=	libft
 SRC_DIR	=	src/
 
 SRC		=	src/ft_printf.c src/ft_format_helpers.c src/ft_format_parser.c src/ft_putchar_format.c \
-			src/ft_putstr_format.c
+			src/ft_putstr_format.c src/ft_print_unsigned.c src/ft_print_pointer.c src/ft_print_pointer.c \
+			src/ft_print_num.c src/ft_print_hex.c src/ft_num_helpers.c src/ft_output_formatted.c
 
 OBJ	=	${SRC:.c=.o}
 

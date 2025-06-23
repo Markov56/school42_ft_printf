@@ -13,18 +13,18 @@
 #include "../includes/ft_printf.h"
 
 static void	ft_putstr_padding(int minus, char *str,
-	int str_len, int padding, char pad)
+	int str_len, int padding)
 {
 	if (minus)
 	{
 		write(1, str, str_len);
 		while (padding--)
-			write(1, &pad, 1);
+			write(1, " ", 1);
 	}
 	else
 	{
 		while (padding--)
-			write(1, &pad, 1);
+			write(1, " ", 1);
 		write(1, str, str_len);
 	}
 }
@@ -46,12 +46,7 @@ int	ft_putstr_format(t_format fmt, char	*str)
 {
 	size_t	str_len;
 	int		padding;
-	char	pad;
 
-	if (fmt.zero && !fmt.minus && fmt.precision < 0 && fmt.type != 's')
-		pad = '0';
-	else
-		pad = ' ';
 	if (!str)
 	{
 		str = "(null)";
@@ -63,6 +58,6 @@ int	ft_putstr_format(t_format fmt, char	*str)
 		padding = fmt.width - str_len;
 	else
 		padding = 0;
-	ft_putstr_padding(fmt.minus, str, (int)str_len, padding, pad);
+	ft_putstr_padding(fmt.minus, str, (int)str_len, padding);
 	return (ft_count_printed(fmt.width, (int)str_len, fmt.precision));
 }

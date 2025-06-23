@@ -44,8 +44,7 @@ int	ft_print_num(t_format fmt, int num)
 	char			sign;
 	char			*num_str;
 	int				num_len;
-	int				zero_padding;
-	int				space_padding;
+	t_padding		padding;
 
 	num_str = ft_get_sign_and_string(fmt, num, &sign);
 	if (num == 0 && fmt.precision == 0)
@@ -54,8 +53,8 @@ int	ft_print_num(t_format fmt, int num)
 		num_len = ft_strlen(num_str);
 	if (sign != 0)
 		num_len++;
-	ft_count_num_padding(fmt, num_len, 0, &zero_padding, &space_padding);
-	ft_output_formatted(fmt, num_str, sign, zero_padding, space_padding);
+	ft_count_num_padding(fmt, num_len, 0, &padding);
+	ft_output_formatted(fmt, num_str, sign, padding);
 	free(num_str);
-	return (num_len + zero_padding + space_padding);
+	return (num_len + padding.zero + padding.space);
 }
