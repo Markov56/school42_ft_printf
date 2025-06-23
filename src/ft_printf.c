@@ -59,61 +59,6 @@ int	ft_printf(const char *str, ...)
 	return (printed_count);
 }
 /*
-int	main(void)
-{
-	int my_return, c_return;
-	
-	my_return = ft_printf("%.03s\n", NULL);
-	c_return = printf("%.03s\n", NULL);
-	printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-	
-	// my_return = ft_printf("%3.1s\n", NULL);
-	// c_return = printf("%3.1s\n", NULL);
-	// printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-	
-	// my_return = ft_printf("%9.1s\n", NULL);
-	// c_return = printf("%9.1s\n", NULL);
-	// printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-	
-	my_return = ft_printf("%.09s\n", NULL);
-	c_return = printf("%.09s\n", NULL);
-	printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%s\n", "hello");
-	c_return = printf("%s\n", "hello");
-	printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%10s\n", "hello");
-	c_return = printf("%10s\n", "hello");
-	printf("2: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%-10s\n", "hello");
-	c_return = printf("%-10s\n", "hello");
-	printf("3: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%.3s\n", "hello");
-	c_return = printf("%.3s\n", "hello");
-	printf("4: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%.10s\n", "hi");
-	c_return = printf("%.10s\n", "hi");
-	printf("5: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	my_return = ft_printf("%10.3s\n", "hello");
-	c_return = printf("%10.3s\n", "hello");
-	printf("6: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	// my_return = ft_printf("%.6i\n", -3);
-	// c_return = printf("%.6i\n", -3);
-	// printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-	
-	// my_return = ft_printf("%10.5i\n", -216);
-	// c_return = printf("%10.5i\n", -216);
-	// printf("1: my_return: %d, c_return: %d\n\n", my_return, c_return);
-
-	return (0);
-}
-
 #include <limits.h>
 int	main(void)
 {

@@ -51,10 +51,8 @@ int	ft_print_num(t_format fmt, int num)
 		num_len = 0;
 	else
 		num_len = ft_strlen(num_str);
-	if (sign != 0)
-		num_len++;
-	ft_count_num_padding(fmt, num_len, 0, &padding);
+	ft_count_num_padding(fmt, num_len, sign != 0, &padding);
 	ft_output_formatted(fmt, num_str, sign, padding);
 	free(num_str);
-	return (num_len + padding.zero + padding.space);
+	return (num_len + padding.zero + padding.space + (sign != 0));
 }
